@@ -3,10 +3,9 @@ import com.github.benmanes.gradle.versions.updates.resolutionstrategy.ComponentS
 import com.palantir.gradle.gitversion.GitVersionPlugin
 import com.palantir.gradle.gitversion.VersionDetails
 import com.vdurmont.semver4j.Semver
-import conventions.kotlin.KotlinConventions
+import conventions.task.kotlin.KotlinTaskConventions
 import groovy.lang.Closure
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -40,7 +39,7 @@ allprojects {
 
     apply<IdeaPlugin>()
     idea { module { inheritOutputDirs = true } }
-    apply<KotlinConventions>()
+    apply<KotlinTaskConventions>()
 
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()
