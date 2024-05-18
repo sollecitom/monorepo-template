@@ -10,3 +10,5 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 tasks.withType<KotlinCompile>()
+
+println("MICHELE!")

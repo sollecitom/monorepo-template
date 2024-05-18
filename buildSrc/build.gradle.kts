@@ -12,5 +12,5 @@ repositories {
 
 dependencies {
     implementation(libs.semver4j)
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24")
+    implementation(libs.kotlin.gradle.plugin)
 }

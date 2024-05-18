@@ -78,6 +78,7 @@ com-github-ben-manes-versions = { module = "com.github.ben-manes.versions:com.gi
 zero-allocation-hashing = { module = "net.openhft:zero-allocation-hashing", version.ref = "zero-allocation-hashing" }
 jnats = { module = "io.nats:jnats", version.ref = "jnats" }
 jose4j = { module = "org.bitbucket.b_c:jose4j", version.ref = "jose4j" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
 com-github-ben-manes-versions = { id = "com.github.ben-manes.versions", version.ref = "version-catalog-report-plugin" }
