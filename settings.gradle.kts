@@ -2,12 +2,13 @@
 
 rootProject.name = "monorepo-template"
 
-module("libs", "chassis", "kotlin", "extensions")
+module("libs", "chassis", "kotlin", "extensions") // TODO ensure libs doesn't appear in the name
 module("libs", "chassis", "core", "domain")
 module("libs", "chassis", "core", "test", "utils")
 
 module("services", "service-1", "domain")
 
+// TODO remove the root project name "monorepo-template" from these
 fun module(vararg pathSegments: String) {
     val projectName = pathSegments.last()
     val path = pathSegments.dropLast(1)
