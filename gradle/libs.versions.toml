@@ -1,0 +1,87 @@
+[versions]
+# buildSrc libraries
+semver4j = "3.1.0"
+# libraries
+kotlin = "1.9.24"
+kotlinx-coroutines = "1.8.1"
+slf4j = "2.0.13"
+http4k = "5.20.0.0"
+junit-jupiter = "5.10.2"
+assertk = "0.28.1"
+kotlinx-datetime = "0.6.0"
+ulid-creator = "5.2.3"
+ksuid-creator = "4.1.1"
+tsid-creator = "2.1.1"
+org-json = "20240303"
+erosb-json-schema = "0.15.0"
+guava = "33.2.0-jre"
+bouncy-castle = "1.78.1"
+test-containers = "1.19.8"
+swagger-parser = "2.1.22"
+atlassian-swagger-request-validator = "2.40.0"
+pulsar = "3.2.2"
+avro = "1.11.3"
+yauaa = "7.26.1"
+log4j = "2.23.1"
+zero-allocation-hashing = "0.16"
+jnats = "2.18.0"
+jose4j = "0.9.6"
+# plugins
+palantir-git-plugin = "3.0.0"
+version-catalog-report-plugin = "0.51.0"
+version-catalog-update-plugin = "0.8.4"
+jib-plugin = "3.4.2"
+
+[libraries]
+# for buildSrc
+semver4j = { module = "com.vdurmont:semver4j", version.ref = "semver4j" }
+# for the build itself
+kotlinx-coroutines-bom = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-bom", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core" }
+kotlinx-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8" }
+kotlinx-coroutines-reactive = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactive" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test" }
+kotlinx-coroutines-debug = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-debug" }
+kotlinx-coroutines-slf4j = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+http4k-bom = { module = "org.http4k:http4k-bom", version.ref = "http4k" }
+http4k-core = { module = "org.http4k:http4k-core" }
+http4k-cloudnative = { module = "org.http4k:http4k-cloudnative" }
+http4k-format-core = { module = "org.http4k:http4k-format-core" }
+http4k-format-jackson-yaml = { module = "org.http4k:http4k-format-jackson-yaml" }
+http4k-server-jetty = { module = "org.http4k:http4k-server-jetty" }
+http4k-client-apache = { module = "org.http4k:http4k-client-apache" }
+http4k-client-apache-async = { module = "org.http4k:http4k-client-apache-async" }
+ulid-creator = { module = "com.github.f4b6a3:ulid-creator", version.ref = "ulid-creator" }
+ksuid-creator = { module = "com.github.f4b6a3:ksuid-creator", version.ref = "ksuid-creator" }
+tsid-creator = { module = "io.hypersistence:hypersistence-tsid", version.ref = "tsid-creator" }
+org-json = { module = "org.json:json", version.ref = "org-json" }
+json-schema-parser = { module = "com.github.erosb:json-sKema", version.ref = "erosb-json-schema" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+bcprov = { module = "org.bouncycastle:bcprov-jdk18on", version.ref = "bouncy-castle" }
+bcpkix = { module = "org.bouncycastle:bcpkix-jdk18on", version.ref = "bouncy-castle" }
+bcutil = { module = "org.bouncycastle:bcutil-jdk18on", version.ref = "bouncy-castle" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter" }
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit-jupiter" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter" }
+assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertk" }
+test-containers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "test-containers" }
+test-containers-pulsar = { module = "org.testcontainers:pulsar", version.ref = "test-containers" }
+swagger-parser = { module = "io.swagger.parser.v3:swagger-parser-v3", version.ref = "swagger-parser" }
+swagger-request-validator = { module = "com.atlassian.oai:swagger-request-validator-core", version.ref = "atlassian-swagger-request-validator" }
+pulsar-client-admin = { module = "org.apache.pulsar:pulsar-client-admin", version.ref = "pulsar" }
+apache-avro-core = { module = "org.apache.avro:avro", version.ref = "avro" }
+yet-another-user-agent-analyzer = { module = "nl.basjes.parse.useragent:yauaa", version.ref = "yauaa" }
+log4j-to-slf4j = { module = "org.apache.logging.log4j:log4j-to-slf4j", version.ref = "log4j" }
+com-github-ben-manes-versions = { module = "com.github.ben-manes.versions:com.github.ben-manes.versions.gradle.plugin", version.ref = "version-catalog-report-plugin" }
+zero-allocation-hashing = { module = "net.openhft:zero-allocation-hashing", version.ref = "zero-allocation-hashing" }
+jnats = { module = "io.nats:jnats", version.ref = "jnats" }
+jose4j = { module = "org.bitbucket.b_c:jose4j", version.ref = "jose4j" }
+
+[plugins]
+com-github-ben-manes-versions = { id = "com.github.ben-manes.versions", version.ref = "version-catalog-report-plugin" }
+com-palantir-git-version = { id = "com.palantir.git-version", version.ref = "palantir-git-plugin" }
+nl-littlerobots-version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "version-catalog-update-plugin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+jib = { id = "com.google.cloud.tools.jib", version.ref = "jib-plugin" }
