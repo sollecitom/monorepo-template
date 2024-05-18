@@ -4,8 +4,8 @@ import com.palantir.gradle.gitversion.GitVersionPlugin
 import com.palantir.gradle.gitversion.VersionDetails
 import com.vdurmont.semver4j.Semver
 import conventions.task.kotlin.KotlinTaskConventions
+import conventions.task.test.TestTaskConventions
 import groovy.lang.Closure
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -39,22 +39,9 @@ allprojects {
 
     apply<IdeaPlugin>()
     idea { module { inheritOutputDirs = true } }
-    apply<KotlinTaskConventions>()
 
-    tasks.withType<Test>().configureEach {
-        useJUnitPlatform()
-        if (System.getenv("CI") != null) {
-            maxParallelForks = 1
-            maxHeapSize = "1g"
-        } else {
-            maxParallelForks = Runtime.getRuntime().availableProcessors() * 2
-        }
-        testLogging {
-            showStandardStreams = false
-            exceptionFormat = TestExceptionFormat.FULL
-        }
-        jvmArgs = JvmConfiguration.testArgs
-    }
+    apply<KotlinTaskConventions>()
+    apply<TestTaskConventions>()
 
     subprojects {
         apply {
