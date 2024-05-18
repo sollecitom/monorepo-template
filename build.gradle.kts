@@ -6,6 +6,7 @@ import com.vdurmont.semver4j.Semver
 import conventions.task.kotlin.KotlinTaskConventions
 import conventions.task.test.TestTaskConventions
 import groovy.lang.Closure
+import plugins.publish.MavenPublicationPlugin
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -52,19 +53,7 @@ allprojects {
 
         java(Plugins.JavaPlugin::configure)
 
-        publishing {
-            repositories { RepositoryConfiguration.Publications.apply(this, project) }
-            publications {
-                create<MavenPublication>("${name}-maven") {
-                    groupId = this@allprojects.group.toString()
-                    artifactId = project.name
-                    version = this@allprojects.version.toString()
-
-                    from(components["java"])
-                    println("Created publication ${this.groupId}:${this.artifactId}:${this.version}")
-                }
-            }
-        }
+        apply<MavenPublicationPlugin>()
     }
 }
 
