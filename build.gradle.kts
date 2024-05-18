@@ -3,6 +3,7 @@ import com.github.benmanes.gradle.versions.updates.resolutionstrategy.ComponentS
 import com.palantir.gradle.gitversion.GitVersionPlugin
 import com.palantir.gradle.gitversion.VersionDetails
 import com.vdurmont.semver4j.Semver
+import conventions.kotlin.KotlinConventions
 import groovy.lang.Closure
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -16,7 +17,6 @@ plugins {
     `java-library`
     idea
     `maven-publish`
-    `kotlin-conventions` apply false
     alias(libs.plugins.com.palantir.git.version)
     alias(libs.plugins.com.github.ben.manes.versions)
     alias(libs.plugins.nl.littlerobots.version.catalog.update)
@@ -40,7 +40,7 @@ allprojects {
 
     apply<IdeaPlugin>()
     idea { module { inheritOutputDirs = true } }
-    apply<KotlinConventionsPlugin>()
+    apply<KotlinConventions>()
 
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()
