@@ -2,6 +2,12 @@
 
 rootProject.name = "monorepo-template"
 
+module("libs", "chassis", "kotlin", "extensions")
+module("libs", "chassis", "core", "domain")
+module("libs", "chassis", "core", "test", "utils")
+
+module("services", "service-1", "domain")
+
 fun module(vararg pathSegments: String) {
     val projectName = pathSegments.last()
     val path = pathSegments.dropLast(1)

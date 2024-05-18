@@ -16,7 +16,7 @@ plugins {
     `java-library`
     idea
     `maven-publish`
-    alias(libs.plugins.kotlin.jvm)
+    `kotlin-conventions` apply false
     alias(libs.plugins.com.palantir.git.version)
     alias(libs.plugins.com.github.ben.manes.versions)
     alias(libs.plugins.nl.littlerobots.version.catalog.update)
@@ -40,14 +40,7 @@ allprojects {
 
     apply<IdeaPlugin>()
     idea { module { inheritOutputDirs = true } }
-
-    tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions.apply {
-            jvmTarget = KotlinConfiguration.TargetJvm.version
-            javaParameters = KotlinConfiguration.Compiler.generateJavaParameters
-            freeCompilerArgs = KotlinConfiguration.Compiler.arguments
-        }
-    }
+    apply<KotlinConventionsPlugin>()
 
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()

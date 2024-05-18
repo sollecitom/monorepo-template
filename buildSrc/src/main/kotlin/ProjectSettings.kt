@@ -1,4 +1,4 @@
 object ProjectSettings {
-    const val rootGroupId = "org.sollecitom"
-    const val groupId = "$rootGroupId.chassis"
+    const val rootGroupId = "com.company"
+    const val groupId = "$rootGroupId.monorepo"
 }

@@ -7,14 +7,10 @@ plugins {
 
 repositories {
     mavenCentral()
-}
-
-buildscript {
-    dependencies {
-//        classpath(libs.semver4j)
-    }
+    gradlePluginPortal()
 }
 
 dependencies {
     implementation(libs.semver4j)
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24")
 }
