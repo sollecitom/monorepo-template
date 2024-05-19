@@ -30,7 +30,6 @@ abstract class AttemptPlugin : Plugin<Project> {
     override fun apply(project: Project) {
 
         val extension = project.extensions.create<AttemptPluginExtension>("attemptPlugin")
-        // TODO this doesn't work, as it's applied before the configuration
         project.gradle.projectsEvaluated {
             val cool = extension.cool.convention(false).get()
             val firstName = extension.author.firstName.convention("Michele").get()
