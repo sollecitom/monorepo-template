@@ -12,22 +12,22 @@ import org.gradle.kotlin.dsl.get
 
 class MavenPublishConvention : Plugin<Project> {
 
-    override fun apply(project: Project) {
+    override fun apply(project: Project) = with(project) {
 
-        project.pluginManager.apply(MavenPublishPlugin::class)
+        pluginManager.apply(MavenPublishPlugin::class)
 
-        project.afterEvaluate {
-            project.extensions.configure(PublishingExtension::class) {
+        afterEvaluate {
+            extensions.configure(PublishingExtension::class) {
                 repositories {
                     RepositoryConfiguration.Publications.apply(this, project)
                 }
                 publications {
-                    create("${project.name}-maven", MavenPublication::class.java) {
-                        groupId = project.rootProject.group.toString()
-                        artifactId = project.name
-                        version = project.rootProject.version.toString()
-                        from(project.components["java"])
-                        project.logger.quiet("Created publication ${groupId}:${artifactId}:${version}")
+                    create("$name-maven", MavenPublication::class.java) {
+                        groupId = rootProject.group.toString()
+                        artifactId = name
+                        version = rootProject.version.toString()
+                        from(components["java"])
+                        logger.quiet("Created publication ${groupId}:${artifactId}:${version}")
                     }
                 }
             }
