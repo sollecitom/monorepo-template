@@ -33,6 +33,7 @@ abstract class AttemptPlugin : Plugin<Project> {
         val cool = extension.cool.convention(false).get()
         val firstName = extension.author.firstName.convention("Bruce").get()
         val lastName = extension.author.lastName.convention("Waybe").get()
+        // TODO this doesn't work, as it's applied before the configuration
         println("$firstName $lastName ${if (cool) "is" else "isn't"} cool")
     }
 }
