@@ -27,7 +27,7 @@ class MavenPublicationPlugin : Plugin<Project> {
                     artifactId = project.name
                     version = project.rootProject.version.toString()
                     from(project.components["java"])
-                    println("Created publication ${groupId}:${artifactId}:${version}")
+                    project.logger.quiet("Created publication ${groupId}:${artifactId}:${version}")
                 }
             }
         }
