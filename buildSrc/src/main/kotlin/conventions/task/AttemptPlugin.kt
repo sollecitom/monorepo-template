@@ -30,7 +30,7 @@ abstract class AttemptPlugin : Plugin<Project> {
     override fun apply(project: Project) {
 
         val extension = project.extensions.create<AttemptPluginExtension>("attemptPlugin")
-        project.gradle.projectsEvaluated {
+        project.afterEvaluate {
             val cool = extension.cool.convention(false).get()
             val firstName = extension.author.firstName.convention("Michele").get()
             val lastName = extension.author.lastName.convention("Sollecito").get()
