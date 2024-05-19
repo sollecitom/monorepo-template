@@ -18,3 +18,4 @@ dependencies {
 // TODO read and use https://docs.gradle.org/current/userguide/custom_plugins.html#sec:build_script_plugins for different types of plugins
 // TODO read and use https://docs.gradle.org/current/userguide/implementing_gradle_plugins_binary.html
 // TODO read and use https://docs.gradle.org/current/userguide/custom_gradle_types.html#service_injection
+// TODO read https://dev.to/autonomousapps/gradle-plugins-and-extensions-a-primer-for-the-bemused-51lp
