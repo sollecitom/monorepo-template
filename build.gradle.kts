@@ -31,8 +31,8 @@ apply<AttemptPlugin>()
 configure<AttemptPluginExtension> {
     cool = true
     author {
-        firstName = "Michele"
-        lastName = "Sollecito"
+        firstName = "Bruce"
+        lastName = "Wayne"
     }
 }
 
