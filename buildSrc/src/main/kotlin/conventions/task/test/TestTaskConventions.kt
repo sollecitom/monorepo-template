@@ -7,7 +7,7 @@ import org.gradle.api.tasks.testing.Test
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.kotlin.dsl.withType
 
-class TestTaskConventions : Plugin<Project> {
+abstract class TestTaskConventions : Plugin<Project> {
 
     override fun apply(project: Project) {
 

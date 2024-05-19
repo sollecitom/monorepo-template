@@ -3,6 +3,8 @@ import com.github.benmanes.gradle.versions.updates.resolutionstrategy.ComponentS
 import com.palantir.gradle.gitversion.GitVersionPlugin
 import com.palantir.gradle.gitversion.VersionDetails
 import com.vdurmont.semver4j.Semver
+import conventions.task.AttemptPlugin
+import conventions.task.AttemptPluginExtension
 import conventions.task.kotlin.KotlinTaskConventions
 import conventions.task.test.TestTaskConventions
 import groovy.lang.Closure
@@ -24,6 +26,15 @@ plugins {
 }
 
 apply<GitVersionPlugin>()
+apply<AttemptPlugin>()
+
+configure<AttemptPluginExtension> {
+    cool = true
+    author {
+        firstName = "Michele"
+        lastName = "Sollecito"
+    }
+}
 
 val parentProject = this
 val currentVersion: String by project
