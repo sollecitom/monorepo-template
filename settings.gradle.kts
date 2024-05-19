@@ -2,21 +2,26 @@
 
 rootProject.name = "monorepo-template"
 
-module("libs", "chassis", "kotlin", "extensions") // TODO ensure libs doesn't appear in the name
-module("libs", "chassis", "core", "domain")
-module("libs", "chassis", "core", "test", "utils")
+library("libs", "chassis", "kotlin", "extensions")
+library("libs", "chassis", "core", "domain")
+library("libs", "chassis", "core", "test", "utils")
 
-module("services", "service-1", "domain")
+service("services", "service-1", "domain")
 
-// TODO remove the root project name "monorepo-template" from these
-fun module(vararg pathSegments: String) {
+fun library(vararg pathSegments: String) = module(exclude = "libs", pathSegments = pathSegments)
+
+fun service(vararg pathSegments: String) = module(exclude = "services", pathSegments = pathSegments)
+
+fun module(exclude: String, vararg pathSegments: String) {
+
     val projectName = pathSegments.last()
     val path = pathSegments.dropLast(1)
-    val group = path.joinToString(separator = "-")
+    val group = path.minus(exclude).joinToString(separator = "-")
     val directory = path.joinToString(separator = "/", prefix = "./")
+    val fullProjectName = "${if (group.isEmpty()) "" else "$group-"}$projectName"
 
-    include("${rootProject.name}-${if (group.isEmpty()) "" else "$group-"}$projectName")
-    project(":${rootProject.name}-${if (group.isEmpty()) "" else "$group-"}$projectName").projectDir = mkdir("$directory/$projectName")
+    include(fullProjectName)
+    project(":$fullProjectName").projectDir = mkdir("$directory/$projectName")
 }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

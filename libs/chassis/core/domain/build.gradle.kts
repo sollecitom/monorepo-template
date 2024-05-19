@@ -1,3 +1,3 @@
 dependencies {
-    api(projects.monorepoTemplateLibsChassisKotlinExtensions)
+    api(projects.chassisKotlinExtensions)
 }

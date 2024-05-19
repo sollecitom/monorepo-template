@@ -24,7 +24,7 @@ class MavenPublishConvention : Plugin<Project> {
                 publications {
                     create("$name-maven", MavenPublication::class.java) {
                         groupId = rootProject.group.toString()
-                        artifactId = name
+                        artifactId = project.name
                         version = rootProject.version.toString()
                         from(components["java"])
                         logger.quiet("Created publication ${groupId}:${artifactId}:${version}")
