@@ -7,9 +7,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 abstract class KotlinTaskConventions : Plugin<Project> {
 
-    override fun apply(project: Project) {
+    override fun apply(project: Project) = with(project) {
 
-        project.tasks.withType<KotlinCompile>().configureEach {
+        tasks.withType<KotlinCompile>().configureEach {
 
             kotlinOptions.apply {
                 jvmTarget = targetJvmVersion
