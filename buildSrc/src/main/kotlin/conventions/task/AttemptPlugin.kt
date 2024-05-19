@@ -7,7 +7,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Nested
 import org.gradle.kotlin.dsl.create
 
-abstract class AttemptPlugin : Plugin<Project> {
+abstract class AttemptPlugin : Plugin<Project> { // TODO remove
 
     override fun apply(project: Project) {
 
