@@ -8,7 +8,7 @@ import conventions.task.AttemptPluginExtension
 import conventions.task.kotlin.KotlinTaskConventions
 import conventions.task.test.TestTaskConventions
 import groovy.lang.Closure
-import plugins.publish.MavenPublicationPlugin
+import plugins.publish.MavenPublishConvention
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -64,7 +64,7 @@ allprojects {
 
         java(Plugins.JavaPlugin::configure)
 
-        apply<MavenPublicationPlugin>()
+        apply<MavenPublishConvention>()
     }
 }
 
