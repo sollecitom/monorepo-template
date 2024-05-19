@@ -1,4 +1,4 @@
-package plugins.publish
+package conventions.task.maven.publish
 
 import RepositoryConfiguration
 import org.gradle.api.Plugin

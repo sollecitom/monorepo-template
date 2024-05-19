@@ -5,9 +5,9 @@ import com.palantir.gradle.gitversion.VersionDetails
 import com.vdurmont.semver4j.Semver
 import conventions.task.AttemptPlugin
 import conventions.task.kotlin.KotlinTaskConventions
+import conventions.task.maven.publish.MavenPublishConvention
 import conventions.task.test.TestTaskConventions
 import groovy.lang.Closure
-import plugins.publish.MavenPublishConvention
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -58,7 +58,6 @@ allprojects {
         apply {
             plugin("org.jetbrains.kotlin.jvm")
             plugin<JavaLibraryPlugin>()
-            plugin("maven-publish")
         }
 
         java(Plugins.JavaPlugin::configure)
