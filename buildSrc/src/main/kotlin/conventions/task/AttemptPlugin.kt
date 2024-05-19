@@ -7,29 +7,11 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Nested
 import org.gradle.kotlin.dsl.create
 
-abstract class AttemptPluginExtension {
-
-    abstract val cool: Property<Boolean>
-
-    @get:Nested
-    abstract val author: AuthorData
-
-    fun author(action: Action<AuthorData>) {
-        action.execute(author)
-    }
-}
-
-abstract class AuthorData {
-
-    abstract val firstName: Property<String>
-    abstract val lastName: Property<String>
-}
-
 abstract class AttemptPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
 
-        val extension = project.extensions.create<AttemptPluginExtension>("attemptPlugin")
+        val extension = project.extensions.create<Extension>("attempt")
         project.afterEvaluate {
             val cool = extension.cool.convention(false).get()
             val firstName = extension.author.firstName.convention("Michele").get()
@@ -37,4 +19,20 @@ abstract class AttemptPlugin : Plugin<Project> {
             project.logger.quiet("$firstName $lastName ${if (cool) "is" else "isn't"} cool")
         }
     }
+
+    abstract class Extension {
+
+        abstract val cool: Property<Boolean>
+
+        @get:Nested
+        abstract val author: AuthorData
+
+        fun author(action: Action<AuthorData>) = action.execute(author)
+    }
+}
+
+abstract class AuthorData {
+
+    abstract val firstName: Property<String>
+    abstract val lastName: Property<String>
 }

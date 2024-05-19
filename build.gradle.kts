@@ -4,7 +4,6 @@ import com.palantir.gradle.gitversion.GitVersionPlugin
 import com.palantir.gradle.gitversion.VersionDetails
 import com.vdurmont.semver4j.Semver
 import conventions.task.AttemptPlugin
-import conventions.task.AttemptPluginExtension
 import conventions.task.kotlin.KotlinTaskConventions
 import conventions.task.test.TestTaskConventions
 import groovy.lang.Closure
@@ -28,7 +27,7 @@ plugins {
 apply<GitVersionPlugin>()
 apply<AttemptPlugin>()
 
-configure<AttemptPluginExtension> {
+configure<AttemptPlugin.Extension> {
     cool = true
     author {
         firstName = "Bruce"
