@@ -10,14 +10,14 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.get
 
-class MavenPublishConvention : Plugin<Project> {
+abstract class MavenPublishConvention : Plugin<Project> {
 
     override fun apply(project: Project) = with(project) {
 
         pluginManager.apply(MavenPublishPlugin::class)
 
         afterEvaluate {
-            extensions.configure(PublishingExtension::class) {
+            extensions.configure<PublishingExtension> {
                 repositories {
                     RepositoryConfiguration.Publications.apply(this, project)
                 }

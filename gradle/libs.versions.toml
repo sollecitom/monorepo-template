@@ -75,6 +75,7 @@ apache-avro-core = { module = "org.apache.avro:avro", version.ref = "avro" }
 yet-another-user-agent-analyzer = { module = "nl.basjes.parse.useragent:yauaa", version.ref = "yauaa" }
 log4j-to-slf4j = { module = "org.apache.logging.log4j:log4j-to-slf4j", version.ref = "log4j" }
 com-github-ben-manes-versions = { module = "com.github.ben-manes.versions:com.github.ben-manes.versions.gradle.plugin", version.ref = "version-catalog-report-plugin" }
+nl-littlerobots-version-catalog-update = { module = "nl.littlerobots.version-catalog-update:nl.littlerobots.version-catalog-update.gradle.plugin", version.ref = "version-catalog-update-plugin" }
 zero-allocation-hashing = { module = "net.openhft:zero-allocation-hashing", version.ref = "zero-allocation-hashing" }
 jnats = { module = "io.nats:jnats", version.ref = "jnats" }
 jose4j = { module = "org.bitbucket.b_c:jose4j", version.ref = "jose4j" }

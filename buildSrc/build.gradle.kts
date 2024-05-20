@@ -13,6 +13,8 @@ repositories {
 dependencies {
     implementation(libs.semver4j)
     implementation(libs.kotlin.gradle.plugin)
+    implementation(libs.nl.littlerobots.version.catalog.update)
+    implementation(libs.com.github.ben.manes.versions)
 }
 
 // TODO read and use https://docs.gradle.org/current/userguide/custom_plugins.html#sec:build_script_plugins for different types of plugins
