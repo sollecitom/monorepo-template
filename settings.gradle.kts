@@ -2,21 +2,23 @@
 
 rootProject.name = "monorepo-template"
 
-library("libs", "chassis", "kotlin", "extensions")
-library("libs", "chassis", "core", "domain")
-library("libs", "chassis", "core", "test", "utils")
+library("chassis", "kotlin", "extensions")
+library("chassis", "core", "domain")
+library("chassis", "core", "test", "utils")
 
-service("services", "service-1", "domain")
+service("service-1", "domain")
 
-fun library(vararg pathSegments: String) = module(exclude = "libs", pathSegments = pathSegments)
+fun library(vararg pathSegments: String) = module(rootFolder = "libs", pathSegments = pathSegments)
 
-fun service(vararg pathSegments: String) = module(exclude = "services", pathSegments = pathSegments)
+fun service(vararg pathSegments: String) = module(rootFolder = "services", pathSegments = pathSegments)
 
-fun module(exclude: String, vararg pathSegments: String) {
+fun tool(vararg pathSegments: String) = module(rootFolder = "tools", pathSegments = pathSegments)
+
+fun module(rootFolder: String, vararg pathSegments: String) {
 
     val projectName = pathSegments.last()
-    val path = pathSegments.dropLast(1)
-    val group = path.minus(exclude).joinToString(separator = "-")
+    val path = listOf(rootFolder) + pathSegments.dropLast(1)
+    val group = path.minus(rootFolder).joinToString(separator = "-")
     val directory = path.joinToString(separator = "/", prefix = "./")
     val fullProjectName = "${if (group.isEmpty()) "" else "$group-"}$projectName"
 
