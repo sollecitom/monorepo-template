@@ -45,6 +45,8 @@ val libsFolder: Path = rootProject.projectDir.path.let { Paths.get(it) }.resolve
 val servicesFolder: Path = rootProject.projectDir.path.let { Paths.get(it) }.resolve("services")
 val toolsFolder: Path = rootProject.projectDir.path.let { Paths.get(it) }.resolve("tools")
 
+fun Project.isLibrary() = projectDir.path.let { Paths.get(it) }.startsWith(libsFolder)
+
 allprojects {
 
     group = ProjectSettings.groupId
@@ -66,11 +68,7 @@ allprojects {
 
         java(Plugins.JavaPlugin::configure)
     }
-}
 
-fun Project.isLibrary() = projectDir.path.let { Paths.get(it) }.startsWith(libsFolder)
-
-allprojects {
     if (isLibrary()) {
         apply<MavenPublishConvention>()
     }
