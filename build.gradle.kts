@@ -8,6 +8,8 @@ import conventions.task.kotlin.KotlinTaskConventions
 import conventions.task.maven.publish.MavenPublishConvention
 import conventions.task.test.TestTaskConventions
 import groovy.lang.Closure
+import java.nio.file.Path
+import java.nio.file.Paths
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -60,7 +62,14 @@ allprojects {
         }
 
         java(Plugins.JavaPlugin::configure)
+    }
+}
 
+val libsFolder: Path = rootProject.projectDir.path.let { Paths.get(it) }.resolve("libs")
+fun Project.isLibrary() = projectDir.path.let { Paths.get(it) }.startsWith(libsFolder)
+
+allprojects {
+    if (isLibrary()) {
         apply<MavenPublishConvention>()
     }
 }
