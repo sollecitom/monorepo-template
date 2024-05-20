@@ -1,3 +1,5 @@
+rootProject.name = "monorepo-template"
+
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
