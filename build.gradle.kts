@@ -41,6 +41,9 @@ val currentVersion: String by project
 val versionCatalogName: String by project
 val versionDetails: Closure<VersionDetails> by extra
 val gitVersion = versionDetails()
+val libsFolder: Path = rootProject.projectDir.path.let { Paths.get(it) }.resolve("libs")
+val servicesFolder: Path = rootProject.projectDir.path.let { Paths.get(it) }.resolve("services")
+val toolsFolder: Path = rootProject.projectDir.path.let { Paths.get(it) }.resolve("tools")
 
 allprojects {
 
@@ -65,7 +68,6 @@ allprojects {
     }
 }
 
-val libsFolder: Path = rootProject.projectDir.path.let { Paths.get(it) }.resolve("libs")
 fun Project.isLibrary() = projectDir.path.let { Paths.get(it) }.startsWith(libsFolder)
 
 allprojects {
