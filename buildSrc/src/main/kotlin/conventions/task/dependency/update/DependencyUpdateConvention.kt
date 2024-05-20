@@ -118,12 +118,14 @@ abstract class DependencyUpdateConvention : Plugin<Project> {
     }
 
     abstract class CheckConfiguration {
+
         abstract val constraints: Property<Boolean>
         abstract val buildEnvironmentConstraints: Property<Boolean>
         abstract val forGradleUpdate: Property<Boolean>
     }
 
     abstract class GradleConfiguration {
+
         @get:Optional
         abstract val versionsApiBaseUrl: Property<String>
 
