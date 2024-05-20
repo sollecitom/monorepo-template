@@ -26,15 +26,15 @@ abstract class DependencyUpdateConvention : Plugin<Project> {
         val extension = project.extensions.create<Extension>("versionCatalog")
 
         afterEvaluate {
-            tasks.withType<DependencyUpdatesTask> { // TODO make these configurable through the extension
+            tasks.withType<DependencyUpdatesTask> {
                 checkConstraints = extension.check.constraints.getOrElse(defaultCheckConstraints)
                 checkBuildEnvironmentConstraints = extension.check.buildEnvironmentConstraints.getOrElse(defaultCheckBuildEnvironmentConstraints)
                 checkForGradleUpdate = extension.check.forGradleUpdate.getOrElse(defaultCheckForGradleUpdate)
                 extension.gradle.releaseChannel.takeIf { it.isPresent }?.let { gradleReleaseChannel = it.get() }
                 extension.gradle.versionsApiBaseUrl.takeIf { it.isPresent }?.let { gradleVersionsApiBaseUrl = it.get() }
-                outputFormatter = "json,html"
-                outputDir = "build/dependencyUpdates"
-                reportfileName = "report"
+                outputFormatter = extension.report.formats.getOrElse(defaultReportFormats)
+                outputDir = extension.report.outputDirectory.getOrElse(defaultOutputDirectory)
+                reportfileName = extension.report.fileName.getOrElse(defaultReportFileName)
 
                 rejectVersionIf {
                     wouldDowngradeVersion() || wouldDestabilizeAStableVersion()
@@ -73,6 +73,9 @@ abstract class DependencyUpdateConvention : Plugin<Project> {
         const val defaultCheckConstraints = true
         const val defaultCheckBuildEnvironmentConstraints = false
         const val defaultCheckForGradleUpdate = true
+        const val defaultReportFormats = "json,html"
+        const val defaultOutputDirectory = "build/dependencyUpdates"
+        const val defaultReportFileName = "report"
     }
 
     abstract class Extension {
@@ -98,6 +101,9 @@ abstract class DependencyUpdateConvention : Plugin<Project> {
         @get:Nested
         abstract val gradle: GradleConfiguration
 
+        @get:Nested
+        abstract val report: ReportConfiguration
+
         fun keep(action: Action<KeepConfiguration>) = action.execute(keep)
 
         fun pins(action: Action<PinConfiguration>) = action.execute(pins)
@@ -107,6 +113,8 @@ abstract class DependencyUpdateConvention : Plugin<Project> {
         fun check(action: Action<CheckConfiguration>) = action.execute(check)
 
         fun gradle(action: Action<GradleConfiguration>) = action.execute(gradle)
+
+        fun report(action: Action<ReportConfiguration>) = action.execute(report)
     }
 
     abstract class CheckConfiguration {
@@ -121,6 +129,18 @@ abstract class DependencyUpdateConvention : Plugin<Project> {
 
         @get:Optional
         abstract val releaseChannel: Property<String>
+    }
+
+    abstract class ReportConfiguration {
+
+        @get:Optional
+        abstract val formats: Property<String>
+
+        @get:Optional
+        abstract val outputDirectory: Property<String>
+
+        @get:Optional
+        abstract val fileName: Property<String>
     }
 
     private val ComponentSelectionWithCurrent.currentSemanticVersion: DependencyVersion get() = DependencyVersion(currentVersion)
