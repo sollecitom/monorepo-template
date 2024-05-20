@@ -30,8 +30,8 @@ abstract class DependencyUpdateConvention : Plugin<Project> {
                 checkConstraints = extension.check.constraints.getOrElse(defaultCheckConstraints)
                 checkBuildEnvironmentConstraints = extension.check.buildEnvironmentConstraints.getOrElse(defaultCheckBuildEnvironmentConstraints)
                 checkForGradleUpdate = extension.check.forGradleUpdate.getOrElse(defaultCheckForGradleUpdate)
-//                this.gradleVersionsApiBaseUrl
-//                this.gradleReleaseChannel
+                extension.gradle.releaseChannel.takeIf { it.isPresent }?.let { gradleReleaseChannel = it.get() }
+                extension.gradle.versionsApiBaseUrl.takeIf { it.isPresent }?.let { gradleVersionsApiBaseUrl = it.get() }
                 outputFormatter = "json,html"
                 outputDir = "build/dependencyUpdates"
                 reportfileName = "report"
@@ -95,6 +95,9 @@ abstract class DependencyUpdateConvention : Plugin<Project> {
         @get:Nested
         abstract val versionCatalogs: NamedDomainObjectContainer<VersionCatalogConfig>
 
+        @get:Nested
+        abstract val gradle: GradleConfiguration
+
         fun keep(action: Action<KeepConfiguration>) = action.execute(keep)
 
         fun pins(action: Action<PinConfiguration>) = action.execute(pins)
@@ -102,12 +105,22 @@ abstract class DependencyUpdateConvention : Plugin<Project> {
         fun versionCatalogs(action: Action<NamedDomainObjectContainer<VersionCatalogConfig>>) = action.execute(versionCatalogs)
 
         fun check(action: Action<CheckConfiguration>) = action.execute(check)
+
+        fun gradle(action: Action<GradleConfiguration>) = action.execute(gradle)
     }
 
     abstract class CheckConfiguration {
         abstract val constraints: Property<Boolean>
         abstract val buildEnvironmentConstraints: Property<Boolean>
         abstract val forGradleUpdate: Property<Boolean>
+    }
+
+    abstract class GradleConfiguration {
+        @get:Optional
+        abstract val versionsApiBaseUrl: Property<String>
+
+        @get:Optional
+        abstract val releaseChannel: Property<String>
     }
 
     private val ComponentSelectionWithCurrent.currentSemanticVersion: DependencyVersion get() = DependencyVersion(currentVersion)
