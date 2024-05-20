@@ -1,6 +1,5 @@
 import com.palantir.gradle.gitversion.GitVersionPlugin
 import com.palantir.gradle.gitversion.VersionDetails
-import conventions.task.AttemptPlugin
 import conventions.task.dependency.update.DependencyUpdateConvention
 import conventions.task.kotlin.KotlinTaskConventions
 import conventions.task.maven.publish.MavenPublishConvention
@@ -20,15 +19,7 @@ plugins {
 }
 
 apply<GitVersionPlugin>()
-apply<AttemptPlugin>()
-
-configure<AttemptPlugin.Extension> {
-    cool = true
-    author {
-        firstName = "Bruce"
-        lastName = "Wayne"
-    }
-}
+apply<DependencyUpdateConvention>()
 
 val parentProject = this
 val currentVersion: String by project
@@ -67,7 +58,5 @@ allprojects {
         apply<MavenPublishConvention>()
     }
 }
-
-apply<DependencyUpdateConvention>()
 
 val containerBasedServiceTest: Task = tasks.register("containerBasedServiceTest").get()
