@@ -17,7 +17,6 @@ buildscript { repositories { RepositoryConfiguration.BuildScript.apply(this) } }
 plugins {
     `java-library`
     idea
-    `maven-publish`
     alias(libs.plugins.com.palantir.git.version)
     alias(libs.plugins.com.github.ben.manes.versions)
     alias(libs.plugins.nl.littlerobots.version.catalog.update)
